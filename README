@@ -2,7 +2,7 @@ Author: Leandro Mora <leandro.jorge.mora@gmail.com>
 Date: 23/08/2014
 
 ------------------------------------------------------------
-<h1> MONGODB - Proof of Concepts </h1>
+ MONGODB - Proof of Concepts
 ------------------------------------------------------------
 Here you will find some proof of concepts to work with MongoDB.
 They are based on a course provided by mongoUniversity <https://university.mongodb.com/>
