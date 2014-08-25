@@ -43,7 +43,7 @@ public class StudentsModifier {
      * @return
      * @throws UnknownHostException
      */
-    public boolean deleteMinorNote(String mongoURIString) throws UnknownHostException {
+    public boolean removeWorstStudentHomework(String mongoURIString) throws UnknownHostException {
         // TODO 1) Add JUNIT
         // TODO 2) It would be great to test it with MORPHIA.
 
@@ -53,7 +53,7 @@ public class StudentsModifier {
 
         DBCollection students = db.getCollection("students");
 
-        System.out.println("NUMBER OF RECORD" + students.count());
+        System.out.println("NUMBER OF RECORDS" + students.count());
 
         DBCursor studentsCursor = students.find();
 
@@ -61,7 +61,7 @@ public class StudentsModifier {
 
             DBObject student = studentsCursor.next();
 
-            removeMinorExamResult(student);
+            removeHomework(student);
 
             students.update(new BasicDBObject("_id", student.get("_id")), student, false, false);
 
@@ -71,7 +71,7 @@ public class StudentsModifier {
     }
 
 
-    private void removeMinorExamResult(DBObject student) {
+    private void removeHomework(DBObject student) {
 
         ArrayList<DBObject> listStudentsAssigments = (ArrayList<DBObject>)student.get("scores");
 
@@ -82,7 +82,7 @@ public class StudentsModifier {
 
             listStudentsAssigments.remove(homeworkToDelete);
 
-            System.out.println(new StringBuilder().append("StudentsModifier.removeMinorExamResult - examam to be removed").append(listStudentsAssigments).toString());
+            System.out.println(new StringBuilder().append("StudentsModifier.removeHomework - homework to be removed").append(listStudentsAssigments).toString());
 
         }
 
@@ -128,7 +128,7 @@ public class StudentsModifier {
         }
 
         StudentsModifier modifier = new StudentsModifier();
-        boolean success = modifier.deleteMinorNote(mongoURIString);
+        boolean success = modifier.removeWorstStudentHomework(mongoURIString);
 
         if (success){
             System.out.println("Success!!");
