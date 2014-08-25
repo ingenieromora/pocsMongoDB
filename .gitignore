@@ -43,6 +43,7 @@ Desktop.ini
 # Intellij
 ######################
 *.iml
+*.idea
 
 ######################
 # Eclipse
